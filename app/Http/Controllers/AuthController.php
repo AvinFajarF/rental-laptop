@@ -87,6 +87,8 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
+        $value = $request->session()->get('laravel_session');
+        $request->session()->forget($value);
         Session::flush();
         $request->session()->flush();
         Auth::logout();

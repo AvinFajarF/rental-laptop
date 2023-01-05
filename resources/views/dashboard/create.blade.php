@@ -23,31 +23,31 @@
             <div class="mb-3 row">
                 <label for="username" class="col-sm-2 col-form-label">username</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name='username' value="{{Session::get('name')}}" id="username">
+                    <input type="text" class="form-control" name='username' value="{{Session::get('username')}}" id="username">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="password" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name='password' id="password">
+                    <input type="password" class="form-control" name='password' id="password">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="kelas" class="col-sm-2 col-form-label">kelas</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name='kelas' id="kelas">
+                    <input type="text"  value="{{Session::get('kelas')}}" class="form-control" name='kelas' id="kelas">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="NoHp" class="col-sm-2 col-form-label">NoHp</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name='NoHp' id="NoHp">
+                    <input type="text" class="form-control" name='NoHp'  value="{{Session::get('NoHp')}}" id="NoHp">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="alamat" class="col-sm-2 col-form-label">alamat</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name='alamat' id="alamat">
+                    <input type="text" class="form-control"  value="{{Session::get('alamat')}}" name='alamat' id="alamat">
                 </div>
             </div>
             <div class="mb-3 row">

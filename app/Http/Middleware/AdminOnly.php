@@ -3,22 +3,27 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminOnly extends Middleware
+class AdminOnly
 {
-   public function AdminOnly(Request $request, Closure $next, ...$guards)
-   {
-    
-      
-      if (Auth::user()->role_id != 1) {
-         return redirect('/');
-      }
-    
-      return $next($request);
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     */
+    public function handle(Request $request, Closure $next)
+    {
+       
+        if (Auth::check() && Auth::user()->role_id === 1) {
+            return $next($request);
+          }   
+          
+        //   return abort(404);
+        return redirect('google.com');
 
-
-   }
+    }
 }

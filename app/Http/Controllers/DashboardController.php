@@ -6,7 +6,9 @@ use App\Models\Category;
 use App\Models\Rent_Logs;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
@@ -15,6 +17,16 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     function __construct()
+     {
+       $this->middleware('admin.only');
+     }
+
+
+    //  View
+
+
     public function index()
     {
         $users = User::count();
@@ -25,6 +37,17 @@ class DashboardController extends Controller
 
         return view('dashboard.layouts.main', ['users' => $users, 'category' => $category, 'rent_logs' => $rent_logs,'date' => $date,]);
     }
+
+    public function viewCategory()
+    {
+        return view('auth.auth');
+    
+    }
+
+
+
+
+    // Logic
 
    
     public function user_list()
@@ -48,14 +71,31 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
+
+        Session::flash('username', $request->username);
+        Session::flash('kelas', $request->kelas);
+        Session::flash('NoHp', $request->NoHp);
+        Session::flash('alamat', $request->alamat);
         
         $request->validate([
             'username' => 'required|string|unique:users,username',
             'password' => 'required',
             'kelas' => 'required',
             'NoHp'  => 'required|unique:users,NoHp|integer|min:12',
-            'alamat'    => 'required||unique:users,alamat',
-        ]);
+            'alamat'    => 'required',
+        ],
+        [
+            'username.required' => 'Username wajib di isi',
+            'username.unique' => 'Username sudah di gunakan',
+            'password.required' => 'Password wajib di isi',
+            'kelas.required' => 'Kelas wajib di isi',
+            'NoHp.required' => 'Nomer hp wajib di isi',
+            'NoHp.unique' => 'Nomer hp sudah di gunakan',
+            'NoHp.min' => 'Nomer hp minimal 12 digit',
+            'NoHp.integer' => 'Nomer hp harus angka',
+            'alamat.required' => 'Alamat harus di isi',
+        ]
+    );
 
         $request['password'] = Hash::make($request->password);
 
@@ -105,4 +145,15 @@ class DashboardController extends Controller
         User::where('slug', $id)->delete($id);
         return redirect('/dashboard/user-list')->with('success', "Berhasil menghapus data dengan nama $id");
     }
+
+
+    public function logout(Request $request)
+    {
+        Session::flush();
+        $request->session()->flush();
+        Auth::logout();
+        return redirect('/auth');
+    }
+
+
 }
