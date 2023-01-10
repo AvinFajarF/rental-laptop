@@ -29,7 +29,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="/dashboard/category">
+				<a href="">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">My Store</span>
 				</a>
@@ -47,9 +47,9 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="/dashboard/rent">
 					<i class='bx bxs-group' ></i>
-					<span class="text">Team</span>
+					<span class="text">Rent</span>
 				</a>
 			</li>
 		</ul>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryDashboard;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LaptopRentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +32,7 @@ Route::controller(AuthController::class)->middleware(['guest'])->group(function 
 
 
 
-Route::controller(DashboardController::class)->middleware(['auth','admin.only'])->group(function () {
+Route::controller(DashboardController::class)->middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', 'index')->middleware('auth');
     // melihat semua users 
@@ -45,5 +46,14 @@ Route::controller(DashboardController::class)->middleware(['auth','admin.only'])
     // LogOut
     Route::get('/logout','logout');
     // Veiw category list
+    Route::get('/dashboard/category', 'viewCategory');
+
+
+    
 });
-Route::get('/dashboard/category', [CategoryDashboard::class, 'index']);
+
+
+Route::controller(LaptopRentController::class)->middleware(['auth'])->group(function () {
+    Route::get('/dashboard/rent','index');
+    Route::post('/dashboard/rent','Rental');
+});

@@ -22,8 +22,8 @@ class AdminOnly
             return $next($request);
           }   
           
-        //   return abort(404);
-        return redirect('google.com');
+          return abort(403);
+        // return redirect('google.com');
 
     }
 }
