@@ -16,7 +16,7 @@ class AuthController extends Controller
     }
 
     public function register(Request $request)
-    {   
+    {
          $request->validate([
             'username' => 'required|string',
             'password' => 'required',
@@ -26,19 +26,9 @@ class AuthController extends Controller
         ]);
 
 
-        // $data = [
-        //     'username' => $request->username,
-        //     'password' => Hash::make($request->password),
-        //     'kelas'    => $request->kelas,
-        //     'NoHp'     => $request->NoHp,
-        //     'alamat'   => $request->alamat,
-        //     'remember_token' => $request->session()->regenerate(),
-        // ];
 
         $request['password'] = Hash::make($request->password);
 
-        // dd($request->all());
-        
 
         User::create($request->all());
 
@@ -51,17 +41,17 @@ class AuthController extends Controller
     {
 
         Session::flash('username', $request->username);
-        
+
         // pengecekan login
       $credentials =  $request->validate([
             'username' => ['required'],
             'password' => ['required']
         ]);
-        
-        
-        
+
+
+
         if (Auth::attempt($credentials)) {
-            
+
             $request->session()->regenerate();
             // dd(Auth::user());
 
