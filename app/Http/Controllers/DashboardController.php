@@ -12,13 +12,16 @@ use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
+
+    
+
     public function index()
     {
         $users = User::count();
         $category = Category::count();
         $rent_logs = RentLogs::count();
         $date = Date('d-m-Y');
-      
+
 
         return view('dashboard.layouts.main', ['users' => $users, 'category' => $category, 'rent_logs' => $rent_logs,'date' => $date,]);
     }
@@ -27,7 +30,7 @@ class DashboardController extends Controller
     {
         $category = Category::all();
         return view('dashboard.dashboard',['category' => $category]);
-    
+
     }
 
 
@@ -35,13 +38,13 @@ class DashboardController extends Controller
 
     // Logic
 
-   
+
     public function user_list()
     {
 
        $users = User::all();
         return view('dashboard.dashboard',['users' => $users]);
-       
+
     }
 
     public function create()
@@ -62,7 +65,7 @@ class DashboardController extends Controller
         Session::flash('kelas', $request->kelas);
         Session::flash('NoHp', $request->NoHp);
         Session::flash('alamat', $request->alamat);
-        
+
         $request->validate([
             'username' => 'required|string|unique:users,username',
             'password' => 'required',
@@ -92,9 +95,9 @@ class DashboardController extends Controller
     }
 
 
-    
 
-  
+
+
     public function destroy($id)
     {
         User::where('slug', $id)->delete($id);
@@ -110,5 +113,5 @@ class DashboardController extends Controller
         return redirect('/auth');
     }
 
-    
+
 }

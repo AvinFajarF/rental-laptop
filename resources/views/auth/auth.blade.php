@@ -56,6 +56,10 @@
                                 <i class='bx bxs-lock-alt'></i>
                                 <input type="text" name="alamat" placeholder="alamat" required>
                             </div>
+                            <div class="input-group">
+                                <i class='bx bxs-lock-alt'></i>
+                                <input type="text" name="nisn" placeholder="nisn" required>
+                            </div>
                             <button type="submit">submit</button>
                         </form>
                         <p>
@@ -88,7 +92,8 @@
             <div class="col align-items-center flex-col sign-in">
                 <div class="form-wrapper align-items-center">
                     <div class="form sign-in">
-                        <form action="/auth/login" method="POST">
+                        <form action="/auth/login" method="GET">
+                            @method("POST")
                             @csrf
                             <div class="input-group">
                                 <i class='bx bxs-user'></i>

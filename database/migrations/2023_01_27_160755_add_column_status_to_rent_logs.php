@@ -14,8 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('rent_logs', function (Blueprint $table) {
-           $table->string('return_date')->after('rent_date');
-           $table->string('peminjam')->after('return_date')->autoIncrement();
+            $table->string('status')->after('peminjam');
         });
     }
 
@@ -27,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('rent_logs', function (Blueprint $table) {
-           $table->dropIfExists('return_date');
+            $table->dropIfExists('status');
         });
     }
 };

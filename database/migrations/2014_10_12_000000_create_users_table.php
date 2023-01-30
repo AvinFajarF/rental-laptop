@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('NoHp')->unique();
             $table->string('alamat')->unique();
+            $table->string('nisn')->unique();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryDashboard;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LaptopRentController;
+use App\Http\Controllers\RentLogsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,10 +24,11 @@ Route::get('/', function () {
 
 
 Route::controller(AuthController::class)->middleware(['guest'])->group(function () {
-    
+
     Route::get('/auth','index')->name('login');
     Route::post('/auth/register', 'register');
     // Route::get('/logout','logout');
+    Route::post('/auth/login','login');
     Route::post('/auth/login','login');
 });
 
@@ -35,7 +37,7 @@ Route::controller(AuthController::class)->middleware(['guest'])->group(function 
 Route::controller(DashboardController::class)->middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', 'index')->middleware('auth');
-    // melihat semua users 
+    // melihat semua users
     Route::get('/dashboard/user-list', 'user_list');
     // menampilkan form untuk membuat user
     Route::get('/dashboard/user-add','create');
@@ -47,13 +49,12 @@ Route::controller(DashboardController::class)->middleware(['auth'])->group(funct
     Route::get('/logout','logout');
     // Veiw category list
     Route::get('/dashboard/category', 'viewCategory');
-
-
-    
 });
 
 
 Route::controller(LaptopRentController::class)->middleware(['auth'])->group(function () {
     Route::get('/dashboard/rent','index');
-    Route::post('/dashboard/rent','Rental');
+    Route::post('/dashboard/rent','store');
 });
+
+Route::get('/dashboard/rentlogs', [RentLogsController::class,'index']);

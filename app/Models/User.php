@@ -14,7 +14,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-  
+
     use Sluggable;
 
     /**
@@ -31,11 +31,10 @@ class User extends Authenticatable
         ];
     }
 
-     
+
 
     protected $attributes = [
-        'role_id' =>  2,
-        // 'remember_token' => ,
+        'role_id' =>  3,
     ];
 
     protected $fillable = [
@@ -45,17 +44,18 @@ class User extends Authenticatable
         'alamat',
         'remember_token',
         'role_id',
+        'nisn',
     ];
 
-  
-    
+    public $timestamps = false;
+
+
     protected $hidden = [
-        'password', 
         'remember_token',
     ];
 
 
-    
+
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];

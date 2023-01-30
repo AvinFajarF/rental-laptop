@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('code');
             $table->string('status');
+            $table->string('jumlah_peminjam');
             $table->timestamps();
         });
     }

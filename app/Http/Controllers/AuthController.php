@@ -21,15 +21,14 @@ class AuthController extends Controller
             'username' => 'required|string',
             'password' => 'required',
             'kelas'    => 'required',
-            'NoHp'     => 'required|unique:users,NoHp|integer|min:12',
+            'NoHp'     => 'required|unique:users,NoHp|min:12',
             'alamat'   => 'required|unique:users,alamat',
         ]);
 
 
-
         $request['password'] = Hash::make($request->password);
 
-
+        // dd($request->all());
         User::create($request->all());
 
         return redirect('/auth');
@@ -62,8 +61,7 @@ class AuthController extends Controller
                 return redirect('/profile');
             }
 
-            dd(Auth::user());
-
+            
         } else{
             Session::flash('status', 'failed');
             Session::flash('error', 'Username / Password yang anda masukan salah');
