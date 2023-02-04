@@ -1,6 +1,4 @@
-@extends('dashboard.layouts.main')
 
-@section('content')
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -58,4 +56,3 @@
                 </div>
             </form>
     <!-- AKHIR FORM -->
-@endsection

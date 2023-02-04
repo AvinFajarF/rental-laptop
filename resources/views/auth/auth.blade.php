@@ -35,7 +35,6 @@
                     <div class="form sign-up">
                         <form action="/auth/register" method="post">
                             @csrf
-                            @method('POST')
                             <div class="input-group">
                                 <i class='bx bxs-user'></i>
                                 <input type="text" name="username" placeholder="username" required>
@@ -92,8 +91,7 @@
             <div class="col align-items-center flex-col sign-in">
                 <div class="form-wrapper align-items-center">
                     <div class="form sign-in">
-                        <form action="/auth/login" method="GET">
-                            @method("POST")
+                        <form action="/auth/login" method="POST">
                             @csrf
                             <div class="input-group">
                                 <i class='bx bxs-user'></i>

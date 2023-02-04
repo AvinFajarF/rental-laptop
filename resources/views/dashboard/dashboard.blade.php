@@ -1,7 +1,3 @@
-@extends('dashboard.layouts.main')
-@section('content')
-
-
 
     @if ($message = Session::get('success'))
         <div class="alert alert-danger">
@@ -49,7 +45,7 @@
                         <td>{{ $item->NoHp }}</td>
                         <td>{{ $item->alamat }}</td>
                         <td>{{ $item->kelas }}</td>
-                        <td><a href="/detail/{{ $item->slug }}" class="btn btn-primary">Detail</a>
+                        <td>
                             <form action="/dashboard/user-list/delete/{{$item->slug}}" method="POST">
                                 @csrf
                                 @method('delete')
@@ -64,5 +60,3 @@
 
 
 
-
-@endsection

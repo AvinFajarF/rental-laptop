@@ -45,6 +45,7 @@ class User extends Authenticatable
         'remember_token',
         'role_id',
         'nisn',
+        'status',
     ];
 
     public $timestamps = false;
